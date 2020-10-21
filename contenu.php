@@ -17,4 +17,5 @@ var_dump($images);
 ?>
 <?php foreach ($images as $image) : ?>
   <li><img src="<?php echo $image_dir_url  . $image ?>" /></li>
+  <?php var_dump($image_dir_url . $image); ?>
 <?php endforeach ?>
