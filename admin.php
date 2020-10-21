@@ -21,4 +21,12 @@ $images = $image->getImages(IMAGE_DIR_PATH);
     <input type="hidden" name="filename" value="<?php echo $image ?>" />
 
   </form>
+
+  <p>Description <br><textarea name="descr" cols="50" rows=5></textarea></p>
+
+
+
+
+
+
 <?php endforeach ?>
