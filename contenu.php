@@ -1,6 +1,7 @@
 <?php
 echo '<h4> contenu.php </h4>';
 require('class/Image.php');
+require('config.php');
 $image = new Image();
 // definition du chemin et de l(URL du repertoire image
 // chemin (path) du repertoire images
