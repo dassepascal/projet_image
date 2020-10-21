@@ -21,6 +21,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
 
       <form method="post" action="process_image.php">
+
         <p> Titre :<input type="text" name="title" /></p>
         <input type="hidden" name="filename" value="<?php echo $image ?>" />
 
