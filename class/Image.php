@@ -24,4 +24,18 @@ class Image
     closedir($handle);
     return $images;
   }
+
+  public function insertImage($title, $descr, $filename)
+  {
+    require('connection.php');
+    //requete
+    if (!$mysqli->query('INSERT INTO image (title,description,filename) VALUES("' . $title . '","' . $descr . '","' . $filename . '")')) {
+
+      echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
+      return false;
+    } else {
+      return true;
+      $mysqli->close();
+    }
+  }
 }
