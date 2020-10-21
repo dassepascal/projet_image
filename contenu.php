@@ -9,8 +9,8 @@ $image = new Image();
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . '/projet_imagebis/images/';
 var_dump($image_dir_path);
 
-/*$image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/';
-var_dump($image_dir_url);*/
+$image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/';
+var_dump($image_dir_url);
 
 // affectation dans la variable $images du resultat de la methode getImages
 $images = $image->getImages($image_dir_path);
