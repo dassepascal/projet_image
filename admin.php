@@ -1,6 +1,6 @@
 <?php
 
-echo 'hello';
+echo '<h4>admin</h4>';
 require('config.php');
 require('class/Image.php');
 //require('contenu.php');

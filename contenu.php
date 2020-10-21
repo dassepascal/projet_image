@@ -17,6 +17,6 @@ $images = $image->getImages($image_dir_path);
 // affichage;
 ?>
 <?php foreach ($images as $image) : ?>
-  <li><img src="<?php echo $image_dir_url  . $image ?>" /></li>
+  <li><img src="<?php echo $image_dir_url  . $image['filename'] ?>" /></li>
 
 <?php endforeach ?>
