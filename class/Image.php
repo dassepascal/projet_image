@@ -21,16 +21,23 @@ class Image
         if ($entry != "." && $entry != "..") {
           $i++;
 
-          $images[$i]['filename'] = ($entry = readdir($handle));
+          $images[$i]['filename'] = ($entry);
           //utilisation de $this pour appeler la methode getImageData
           $image_data = $this->getImageData($entry);
+          var_dump($image_data);
+
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
         }
+        exit();
       }
+
+
+      closedir($handle);
+
+      return $images;
+      // var_dump($images);
     }
-    closedir($handle);
-    return $images;
   }
 
   public function insertImage($title, $descr, $filename)
@@ -58,9 +65,13 @@ class Image
     } else {
       $row = $result->fetch_array();
       $image_data['id'] = $row['id'];
+      var_dump($row['id']);
       $image_data['title'] = $row['title'];
+      var_dump($row['title']);
       $image_data['description'] = $row['description'];
+      var_dump($row['description']);
       $image_data['filename'] = $row['filename'];
+      var_dump($row['filename']);
       var_dump('#10');
       return $image_data;
 
