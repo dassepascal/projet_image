@@ -29,7 +29,6 @@ class Image
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
         }
-        exit();
       }
 
 
@@ -64,18 +63,17 @@ class Image
       return false;
     } else {
       $row = $result->fetch_array();
+      var_dump($row);
       $image_data['id'] = $row['id'];
-      var_dump($row['id']);
-      $image_data['title'] = $row['title'];
-      var_dump($row['title']);
-      $image_data['description'] = $row['description'];
-      var_dump($row['description']);
-      $image_data['filename'] = $row['filename'];
-      var_dump($row['filename']);
-      var_dump('#10');
-      return $image_data;
 
-      var_dump($image_data);
+      $image_data['title'] = $row['title'];
+
+      $image_data['description'] = $row['description'];
+
+      $image_data['filename'] = $row['filename'];
+
+
+      return $image_data;
     }
   }
 }
