@@ -4,20 +4,19 @@ echo '<h4>admin</h4>';
 require('config.php');
 require('class/Image.php');
 //require('contenu.php');
-var_dump(('#z'));
+
 $image = new Image();
-var_dump('#z2');
+
 $images = $image->getImages(IMAGE_DIR_PATH);
 
-var_dump(('#z3'))
 ?>
 
 
-<?php $image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/';
-var_dump('#z5'); ?>
+<?php $image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/'; ?>
+
 
 <h1><?php echo WEB_TITLE ?></h1>
-<?php var_dump('#z6'); ?>
+
 <ul>
   <?php foreach ($images as $image) : ?>
 

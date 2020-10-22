@@ -5,7 +5,7 @@ require('config.php');
 require('class/Image.php');
 
 if (!isset($_POST['formImageSubmit'])) {
-  var_dump($_POST['formImageSubmit']);
+
 
   $error_msg = 'Aucune donnée n\'est fournie.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   var_dump(WEB_DIR_URL . 'admin.php');
@@ -21,7 +21,7 @@ if (isset($_POST['formImageSubmit'])) {
     //enregistrement dans la base de donnees
     $image = new Image();
     $insertImage = $image->insertImage($title, $descr, $filename);
-    var_dump($insertImage);
+
     if (true === $insertImage) {
       header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
     } else {

@@ -24,7 +24,7 @@ class Image
           $images[$i]['filename'] = ($entry);
           //utilisation de $this pour appeler la methode getImageData
           $image_data = $this->getImageData($entry);
-          var_dump($image_data);
+
 
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
@@ -63,7 +63,7 @@ class Image
       return false;
     } else {
       $row = $result->fetch_array();
-      var_dump($row);
+
       $image_data['id'] = $row['id'];
 
       $image_data['title'] = $row['title'];

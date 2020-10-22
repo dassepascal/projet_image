@@ -19,6 +19,6 @@ $images = $image->getImages($image_dir_path);
 <?php foreach ($images as $image) : ?>
   <!-- <li><img src="<?php/* echo $image_dir_url  . $image*/  ?>" /></li>-->
 
-  <li><img src="<?php echo IMAGE_DIR_URL . $image  ?>" /></li>
+  <li><img src="<?php echo IMAGE_DIR_URL . $image['filename']  ?>" /></li>
 
 <?php endforeach ?>
