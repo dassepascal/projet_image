@@ -8,7 +8,7 @@ $image = new Image();
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . '/projet_imagebis/images/';
 
 
-$image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/';
+//$image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/';
 
 
 // affectation dans la variable $images du resultat de la methode getImages
@@ -17,6 +17,9 @@ $images = $image->getImages($image_dir_path);
 // affichage;
 ?>
 <?php foreach ($images as $image) : ?>
-  <li><img src="<?php echo $image_dir_url  . $image ?>" /></li>
+  <!-- <li><img src="<?php/* echo $image_dir_url  . $image*/  ?>" /></li>-->
+  <?php var_dump(IMAGE_DIR_URL);
+  var_dump($image); ?>
+  <li><img src="<?php echo IMAGE_DIR_URL . $image  ?>" /></li>
 
 <?php endforeach ?>
