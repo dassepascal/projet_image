@@ -2,6 +2,7 @@
 
 echo '<h4>process_image.php </h4>';
 require('config.php');
+require('class/Image.php');
 
 if (!isset($_POST['formImageSubmit'])) {
   var_dump($_POST['formImageSubmit']);
@@ -18,6 +19,13 @@ if (isset($_POST['formImageSubmit'])) {
     $error_msg = ' une des informations est manquante.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   } else {
     //enregistrement dans la base de donnees
-
+    $image = new Image();
+    $insertImage = $image->insertImage($title, $descr, $filename);
+    var_dump($insertImage);
+    if (true === $insertImage) {
+      header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+    } else {
+      $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+    }
   }
 }

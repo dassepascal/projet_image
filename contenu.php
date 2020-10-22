@@ -17,9 +17,13 @@ $images = $image->getImages($image_dir_path);
 // affichage;
 ?>
 <?php foreach ($images as $image) : ?>
+<<<<<<< HEAD
   <!-- <li><img src="<?php/* echo $image_dir_url  . $image*/  ?>" /></li>-->
   <?php var_dump(IMAGE_DIR_URL);
   var_dump($image); ?>
   <li><img src="<?php echo IMAGE_DIR_URL . $image  ?>" /></li>
+=======
+  <li><img src="<?php echo $image_dir_url  . $image['filename'] ?>" /></li>
+>>>>>>> miseajouradmin
 
 <?php endforeach ?>
