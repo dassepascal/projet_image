@@ -21,7 +21,7 @@ if (isset($_POST['formImageSubmit'])) {
     //enregistrement dans la base de donnees
     $image = new Image();
     $insertImage = $image->insertImage($title, $descr, $filename);
-
+    var_dump($insertImage);
     if (true === $insertImage) {
       header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
     } else {
