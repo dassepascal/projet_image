@@ -76,4 +76,15 @@ class Image
       return $image_data;
     }
   }
+  public function updateImageData($title, $descr, $filename)
+  {
+    require('connection.php');
+    //requete
+    if (!$mysqli->query('UPDATE image SET title = "' . $title . '", description = "' . $description . '", filename = "' . $filename . '" ')) {
+      echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
+    } else {
+      return true;
+      $mysqli->close();
+    }
+  }
 }
