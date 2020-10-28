@@ -26,8 +26,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
       <form method="post" action="process_image.php">
         <?php if (!empty($image['title'])) : ?>
           <input type="hidden" name="update" value="1" />
-          <?php var_dump($image['title']); ?>
-          <?php var_dump('miseajouradmin'); ?>
+
         <?php endif ?>
         <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
 

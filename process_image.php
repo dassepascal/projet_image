@@ -8,7 +8,6 @@ if (!isset($_POST['formImageSubmit'])) {
 
 
   $msg_error = 'Aucune donnée n\'est fournie.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
-  var_dump(WEB_DIR_URL . 'admin.php');
 }
 if (isset($_POST['formImageSubmit'])) {
   $title        = $_POST['title'];
