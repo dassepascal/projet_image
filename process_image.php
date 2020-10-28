@@ -7,7 +7,7 @@ require('class/Image.php');
 if (!isset($_POST['formImageSubmit'])) {
 
 
-  $error_msg = 'Aucune donnée n\'est fournie.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
+  $msg_error = 'Aucune donnée n\'est fournie.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   var_dump(WEB_DIR_URL . 'admin.php');
 }
 if (isset($_POST['formImageSubmit'])) {
@@ -16,7 +16,7 @@ if (isset($_POST['formImageSubmit'])) {
   $filename     = $_POST['filename'];
   if ((empty($title)) || (empty($descr)) || (empty($filename))) {
 
-    $error_msg = ' une des informations est manquante.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
+    $msg_error = ' une des informations est manquante.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   } else {
 
     if (isset($_POST['update'])) {
@@ -26,7 +26,7 @@ if (isset($_POST['formImageSubmit'])) {
       if (true === $insertImage) {
         header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
       } else {
-        $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+        $msg_error = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
       }
     } else {
       //enregistrement dans la base de donnees
@@ -34,10 +34,14 @@ if (isset($_POST['formImageSubmit'])) {
       $insertImage = $image->insertImage($title, $descr, $filename);
       var_dump($insertImage);
       if (true === $insertImage) {
-        header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+        //header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+        $msg_sucess = 'les informations ont bien été enregistrées dans la base de données.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
       } else {
-        $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+        $msg_error = $insertImage;
       }
     }
   }
 }
+
+if (isset($msg_error)) echo $msg_error;
+if (isset($msg_sucess)) echo $msg_sucess;

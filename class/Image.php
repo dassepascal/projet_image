@@ -44,7 +44,7 @@ class Image
     //requete
     if (!$mysqli->query('INSERT INTO image (title,description,filename) VALUES("' . $title . '","' . $descr . '","' . $filename . '")')) {
       $msg_error = 'une erreur est survenue lors de l\'insertion des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
-      $msg_error = '<br/>Aucune information n\'a été enregistrée.';
+      $msg_error .= '<br/>Aucune information n\'a été enregistrée.';
       return $msg_error;
       // echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
       // return false;
@@ -86,8 +86,7 @@ class Image
       // echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
       //var_dump($mysqli);
       // return false;
-      $msg_error = 'une erreur est survenue lors de la mise à jour des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
-      $msg_error = '<br/>Aucune information n\'a été enregistrée.';
+      $msg_error = 'une erreur est survenue lors de la mise à jour des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error . '<br/>Aucune information n\'a été enregistrée.';
       return $msg_error;
     } else {
       return true;
