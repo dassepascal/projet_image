@@ -1,8 +1,9 @@
 <?php
 
 echo '<h4>admin</h4>';
-require('config.php');
+//require('config.php');
 require('class/Image.php');
+require('process_image.php');
 //require('contenu.php');
 
 $image = new Image();

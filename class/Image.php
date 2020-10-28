@@ -43,9 +43,11 @@ class Image
     require('connection.php');
     //requete
     if (!$mysqli->query('INSERT INTO image (title,description,filename) VALUES("' . $title . '","' . $descr . '","' . $filename . '")')) {
-
-      echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
-      return false;
+      $msg_error = 'une erreur est survenue lors de l\'insertion des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
+      $msg_error = '<br/>Aucune information n\'a été enregistrée.';
+      return $msg_error;
+      // echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
+      // return false;
     } else {
       return true;
       $mysqli->close();
@@ -81,8 +83,12 @@ class Image
     require('connection.php');
     //requete
     if (!$mysqli->query('UPDATE image SET title = "' . $title . '", description = "' . $descr . '", filename = "' . $filename . '" WHERE title ="' . $title . '" ')) {
-      echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
-      return false;
+      // echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
+      //var_dump($mysqli);
+      // return false;
+      $msg_error = 'une erreur est survenue lors de la mise à jour des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
+      $msg_error = '<br/>Aucune information n\'a été enregistrée.';
+      return $msg_error;
     } else {
       return true;
       $mysqli->close();

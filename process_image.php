@@ -2,7 +2,7 @@
 
 echo '<h4>process_image.php </h4>';
 require('config.php');
-require('class/Image.php');
+//require('class/Image.php');
 
 if (!isset($_POST['formImageSubmit'])) {
 
@@ -15,7 +15,7 @@ if (isset($_POST['formImageSubmit'])) {
   $descr        = $_POST['descr'];
   $filename     = $_POST['filename'];
   if ((empty($title)) || (empty($descr)) || (empty($filename))) {
-    var_dump('une des informations est manquante');
+
     $error_msg = ' une des informations est manquante.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   } else {
 
