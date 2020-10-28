@@ -23,6 +23,9 @@ $images = $image->getImages(IMAGE_DIR_PATH);
     <li><img src="<?php echo $image_dir_url  . $image['filename'] ?>" />
       <form method="post" action="process_image.php">
         <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
+        <?php if (!empty($image['title'])) : ?>
+          <input type="hidden" name="update" value="1" />
+        <?php endif ?>
         <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
         <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
         <p><input type="submit" name="formImageSubmit" value="validez" /></p>
