@@ -23,7 +23,8 @@ if (isset($_POST['formImageSubmit'])) {
       $insertImage = $image->updateImageData($title, $descr, $filename);
       var_dump($insertImage); //true
       if (true === $insertImage) {
-        header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+        // header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+        $msg_sucess = 'les informations ont bien été mises à jour dans la base de données.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
       } else {
         $msg_error = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
       }
