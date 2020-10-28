@@ -2,7 +2,7 @@
 
 echo '<h4>process_image.php </h4>';
 require('config.php');
-//require('class/Image.php');
+require('class/Image.php');
 
 if (!isset($_POST['formImageSubmit'])) {
 
