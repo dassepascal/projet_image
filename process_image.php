@@ -15,17 +15,29 @@ if (isset($_POST['formImageSubmit'])) {
   $descr        = $_POST['descr'];
   $filename     = $_POST['filename'];
   if ((empty($title)) || (empty($descr)) || (empty($filename))) {
-
+    var_dump('une des informations est manquante');
     $error_msg = ' une des informations est manquante.<a href="' . WEB_DIR_URL . 'admin.php">retour</a>';
   } else {
-    //enregistrement dans la base de donnees
-    $image = new Image();
-    $insertImage = $image->insertImage($title, $descr, $filename);
-    var_dump($insertImage);
-    if (true === $insertImage) {
-      header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+
+    if (isset($_POST['update'])) {
+      $image = new Image();
+      $insertImage = $image->updateImageData($title, $descr, $filename);
+      var_dump($insertImage); //true
+      if (true === $insertImage) {
+        header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+      } else {
+        $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+      }
     } else {
-      $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+      //enregistrement dans la base de donnees
+      $image = new Image();
+      $insertImage = $image->insertImage($title, $descr, $filename);
+      var_dump($insertImage);
+      if (true === $insertImage) {
+        header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
+      } else {
+        $error_msg = '<br><a href="' . WEB_DIR_URL . 'admin.php"></a>';
+      }
     }
   }
 }

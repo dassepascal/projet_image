@@ -18,18 +18,23 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 <h1><?php echo WEB_TITLE ?></h1>
 
 <ul>
+
   <?php foreach ($images as $image) : ?>
 
     <li><img src="<?php echo $image_dir_url  . $image['filename'] ?>" />
       <form method="post" action="process_image.php">
-        <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
         <?php if (!empty($image['title'])) : ?>
           <input type="hidden" name="update" value="1" />
+          <?php var_dump($image['title']); ?>
+          <?php var_dump('miseajouradmin'); ?>
         <?php endif ?>
+        <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
+
         <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
         <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
         <p><input type="submit" name="formImageSubmit" value="validez" /></p>
       </form>
     </li>
   <?php endforeach ?>
+
 </ul>

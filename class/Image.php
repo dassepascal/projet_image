@@ -80,7 +80,7 @@ class Image
   {
     require('connection.php');
     //requete
-    if (!$mysqli->query('UPDATE image SET title = "' . $title . '", description = "' . $description . '", filename = "' . $filename . '" ')) {
+    if (!$mysqli->query('UPDATE image SET title = "' . $title . '", description = "' . $descr . '", filename = "' . $filename . '" WHERE title ="' . $title . '" ')) {
       echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
       return false;
     } else {
