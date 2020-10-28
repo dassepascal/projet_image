@@ -17,11 +17,13 @@
   </form>
   <?php
   $upload_dir = 'c:\wamp64/www/projet_imagebis/images/';
+  var_dump($upload_dir);
 
   foreach ($_FILES['upload']['error'] as $key => $error) {
+    var_dump($_FILES['upload']['error']);
 
     if ($error == UPLOAD_ERR_OK) //aucune erreur
-    {
+      var_dump($error); {
       $tmp_name = $_FILES['upload']['tmp_name'][$key];
       var_dump($tmp_name);
       $name = $_FILES['upload']['name'][$key];
