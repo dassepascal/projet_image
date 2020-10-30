@@ -1,5 +1,6 @@
 <?php
 echo 'upload';
+require('menu.php');
 $upload_error = array(
 
   UPLOAD_ERR_OK             => "No errors.",
@@ -42,7 +43,9 @@ if (isset($_POST['submit'])) {
 
 <body>
   <div id="container">
-
+    <?php if (!empty($message)) {
+      echo "<p>{$message}</p>";
+    } ?>
     <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
       <p>Ajouter des images</p>
       <input type="file" value="" name="file_upload" multiple="multiple">

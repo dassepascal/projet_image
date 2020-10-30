@@ -3,7 +3,7 @@
 echo '<h4>admin</h4>';
 //require('config.php');
 //require('class/Image.php');
-require('process_image.php');
+require('../process/process_image.php');
 //require('contenu.php');
 
 $image = new Image();
@@ -20,7 +20,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 <head>
   <title>admin</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -32,14 +32,11 @@ $images = $image->getImages(IMAGE_DIR_PATH);
     <ul>
 
       <?php foreach ($images as $image) : ?>
-        <ul class="menu">
-          <li><a href="admin.php">Administration</a></li>
-          <li><a href="admin/upload.php"> Upload</a></li>
-          <li><a href="index.php">Site web</a></li>
-        </ul>
+        <?php require('menu.php'); ?>
+
         <li><img class="img" src="<?php echo $image_dir_url  . $image['filename'] ?>" />
           <div id="form">
-            <form method="post" action="process_image.php">
+            <form method="post" action="../process/process_image.php">
 
               <?php if (!empty($image['title'])) : ?>
                 <input type="hidden" name="update" value="1" />

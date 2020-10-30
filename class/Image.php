@@ -40,7 +40,7 @@ class Image
 
   public function insertImage($title, $descr, $filename)
   {
-    require('connection.php');
+    require('../process/connection.php');
     //requete
     if (!$mysqli->query('INSERT INTO image (title,description,filename) VALUES("' . $title . '","' . $descr . '","' . $filename . '")')) {
       $msg_error = 'une erreur est survenue lors de l\'insertion des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
@@ -55,7 +55,7 @@ class Image
   }
   public function getImageData($filename)
   {
-    require('connection.php');
+    require('../process/connection.php');
     //requete
 
     $result = $mysqli->query('SELECT id,title,description,filename FROM image WHERE filename = "' . $filename . '"');
@@ -79,7 +79,7 @@ class Image
   }
   public function updateImageData($title, $descr, $filename)
   {
-    require('connection.php');
+    require('../process/connection.php');
     //requete
     if (!$mysqli->query('UPDATE image SET title = "' . $title . '", description = "' . $descr . '", filename = "' . $filename . '" WHERE title ="' . $title . '" ')) {
       // echo 'une erreur est survenue lors de la mise à jour des données dans la base. Message d\'erreur: ' . $mysqli->error;
