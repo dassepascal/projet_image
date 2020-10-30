@@ -25,35 +25,43 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
 <body>
 
+  <div id="container">
 
+    <h1><?php echo WEB_TITLE ?></h1>
 
-  <h1><?php echo WEB_TITLE ?></h1>
+    <ul>
 
-  <ul>
+      <?php foreach ($images as $image) : ?>
+        <ul class="menu">
+          <li><a href="admin.php">Administration</a></li>
+          <li><a href="admin/upload.php"> Upload</a></li>
+          <li><a href="index.php">Site web</a></li>
+        </ul>
+        <li><img class="img" src="<?php echo $image_dir_url  . $image['filename'] ?>" />
+          <div id="form">
+            <form method="post" action="process_image.php">
 
-    <?php foreach ($images as $image) : ?>
-      <ul class="menu">
-        <li><a href="admin.php">Administration</a></li>
-        <li><a href="upload.php"> Upload</a></li>
-        <li><a href="index.php">Site web</a></li>
-      </ul>
-      <li><img class="img" src="<?php echo $image_dir_url  . $image['filename'] ?>" />
-        <form method="post" action="process_image.php">
+              <?php if (!empty($image['title'])) : ?>
+                <input type="hidden" name="update" value="1" />
 
-          <?php if (!empty($image['title'])) : ?>
-            <input type="hidden" name="update" value="1" />
+              <?php endif ?>
+              <p>Nom du fichier image :</p>
+              <p>Ajoutez ou modifiez des informations pour cette image </p>
+              <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
 
-          <?php endif ?>
-          <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
+              <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
+              <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
+              <div id="btn">
+                <p><input type="submit" name="formImageSubmit" value="validez" /></p>
+              </div>
 
-          <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
-          <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
-          <p><input type="submit" name="formImageSubmit" value="validez" /></p>
-        </form>
-      </li>
-    <?php endforeach ?>
+            </form>
+          </div>
+        </li>
+      <?php endforeach ?>
 
-  </ul>
+    </ul>
+  </div>
 </body>
 
 </html>
