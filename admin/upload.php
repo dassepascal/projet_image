@@ -1,7 +1,7 @@
 <?php
 echo 'upload';
 require('menu.php');
-$upload_error = array(
+$upload_errors = array(
 
   UPLOAD_ERR_OK             => "No errors.",
   UPLOAD_ERR_INI_SIZE       => "Larger than upload_max_filesize.",
