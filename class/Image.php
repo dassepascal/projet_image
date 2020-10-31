@@ -92,4 +92,34 @@ class Image
       $mysqli->close();
     }
   }
+
+  public function upload($files)
+  {
+    $upload_dir = IMAGE_DIR_PATH;
+    foreach ($files['upload']['error'] as $key => $error) {
+      var_dump($files['upload']['error']);
+      $error = 0;
+      if ($error == UPLOAD_ERR_OK) {
+        var_dump('#1');
+        $tmp_name = $_FILES['upload']['tmp_name'][$key];
+        $name = $_FILES['upload']['name'][$key];
+        var_dump('#2');
+        if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
+          var_dump('#3');
+          var_dump(move_uploaded_file($tmp_name, $upload_dir . $name));
+          $error++;
+          var_dump($error);
+          var_dump('#4');
+        } else {
+          $error++;
+          var_dump($error);
+        }
+      }
+    }
+    if ($error == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
