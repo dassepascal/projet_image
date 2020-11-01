@@ -97,6 +97,7 @@ class Image
   {
     $upload_dir = IMAGE_DIR_PATH;
     foreach ($files['upload']['error'] as $key => $error) {
+      var_dump($error);
       var_dump($files['upload']['error']);
       $error = 0;
       if ($error == UPLOAD_ERR_OK) {
@@ -107,7 +108,7 @@ class Image
         if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
           var_dump('#3');
           var_dump(move_uploaded_file($tmp_name, $upload_dir . $name));
-          $error++;
+
           var_dump($error);
           var_dump('#4');
         } else {
@@ -117,6 +118,7 @@ class Image
       }
     }
     if ($error == 0) {
+      var_dump($error);
       return true;
     } else {
       return false;
