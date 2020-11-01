@@ -17,15 +17,14 @@ $uploads_dir = 'c:\wamp64/www/projet_imagebis/images/';
 
 if (!empty($_FILES)) {
   $image = new Image();
-  var_dump($image);
+
 
   $images = $image->upload($_FILES);
-  var_dump($_FILES);
+
   if ($images === true) {
-    var_dump('#1');
-    var_dump($images);
+
+
     $msg_success = 'Le chargement a réussi';
-    var_dump($msg_success);
   } else {
     $msg_error = 'Le chargement a échoué';
   }
