@@ -98,40 +98,42 @@ class Image
     $upload_dir = IMAGE_DIR_PATH;
     foreach ($files['upload']['error'] as $key => $error) {
 
+      $error = 0;
 
-      $type = $files['upload']['type'][$key];
-      if ($type == 'image/jpeg') {
-        $error = 0;
-        if ($_FILES['upload']['size'] > 10000000) {
+      //$type = $files['upload']['type'][$key];
+      // if ($type == 'image/jpeg') {
+
+      // if ($_FILES['upload']['size'] > 10000000) {
+      //  $error++;
+      //  var_dump($error);
+
+      if ($error == UPLOAD_ERR_OK) {
+
+        $tmp_name = $_FILES['upload']['tmp_name'][$key];
+
+        $name = $_FILES['upload']['name'][$key];
+        var_dump($name);
+
+        if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
+          var_dump('#9');
+        } else {
           $error++;
+          var_dump('#10');
+          //appel acec $this de la mehode au sein d'une meme classe
+          // $this->createThumbnail($filename);
+        }
+
+
+        if ($error == 0) {
           var_dump($error);
+          return true;
+        } else {
+          return false;
         }
-        if ($error == UPLOAD_ERR_OK) {
-
-          $tmp_name = $_FILES['upload']['tmp_name'][$key];
-
-          $filename = $_FILES['upload']['name'][$key];
-          var_dump($filename);
-
-          if (move_uploaded_file($tmp_name, $upload_dir . $filename)) {
-            var_dump('#9');
-            $error++;
-          } else {
-            var_dump('#10');
-            //appel acec $this de la mehode au sein d'une meme classe
-            $this->createThumbnail($filename);
-          }
-        }
-      }
-      if ($error == 0) {
-        var_dump($error);
-        return true;
-      } else {
-        return false;
       }
     }
   }
-  public function createThumbnail($filename)
+  /* public function createThumbnail($filename)
   {
     //1 definition des chemins des images et des vignettes
     $image = IMAGE_DIR_PATH . $filename;
@@ -184,5 +186,5 @@ class Image
     } else {
       return true;
     }
-  }
+  }*/
 }
