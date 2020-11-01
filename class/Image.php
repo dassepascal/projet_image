@@ -98,13 +98,14 @@ class Image
     $upload_dir = IMAGE_DIR_PATH;
     foreach ($files['upload']['error'] as $key => $error) {
 
-      if ($_FILES['upload']['size'] > 10000000) {
-        $error++;
-        var_dump($error);
-      }
+
       $type = $files['upload']['type'][$key];
       if ($type == 'image/jpeg') {
         $error = 0;
+        if ($_FILES['upload']['size'] > 10000000) {
+          $error++;
+          var_dump($error);
+        }
         if ($error == UPLOAD_ERR_OK) {
 
           $tmp_name = $_FILES['upload']['tmp_name'][$key];
