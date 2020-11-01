@@ -6,6 +6,7 @@ echo '<h4>admin</h4>';
 require('../process/process_image.php');
 //require('contenu.php');
 
+
 $image = new Image();
 
 $images = $image->getImages(IMAGE_DIR_PATH);
@@ -25,7 +26,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
 <body>
 
-  <div id="container">
+  <div class="container">
 
     <h1><?php echo WEB_TITLE ?></h1>
 

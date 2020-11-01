@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-#container {
+.container {
   width: 1000px;
   margin: 0 auto;
   border: 1px solid blue;
@@ -60,7 +60,7 @@ p {
 }
 
 input[type=submit] {
-  background: beige;
+  background: rgb(71, 155, 78);
   padding: 10px;
   width: 150px;
   border-radius: 20px;
@@ -75,5 +75,19 @@ input[type=submit]:hover {
   background: green;
   color: #fff;
 
+
+}
+
+.msg_success {
+  border: 1px solid none;
+  width: 300px;
+  background: rgb(66, 139, 84);
+  color: beige;
+}
+
+.msg_error {
+  width: 300px;
+  background: #ff0000;
+  color: #fff;
 
 }
