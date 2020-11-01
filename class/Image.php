@@ -111,10 +111,10 @@ class Image
 
         $tmp_name = $_FILES['upload']['tmp_name'][$key];
 
-        $name = $_FILES['upload']['name'][$key];
-        var_dump($name);
+        $filename = $_FILES['upload']['name'][$key];
+        var_dump($filename);
 
-        if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
+        if (move_uploaded_file($tmp_name, $upload_dir . $filename)) {
           var_dump('#9');
         } else {
           $error++;
