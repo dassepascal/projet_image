@@ -33,9 +33,16 @@ body {
 }
 
 
+.container-image {
+  display: flex;
+  background-color: azure;
+
+
+}
+
 .menu {
 
-  float: right;
+  display: block;
   border: 1px solid black;
   width: 150px;
   padding-left: 30px;
@@ -43,6 +50,14 @@ body {
   padding-bottom: 10px;
 
 
+}
+
+.img {
+  display: block;
+}
+
+#form {
+  display: block;
 }
 
 p {
@@ -59,15 +74,27 @@ p {
   text-align: center;
 }
 
+h2 {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+
+}
+
+.container form {
+  text-align: center;
+}
+
 input[type=submit] {
   background: rgb(71, 155, 78);
   padding: 10px;
+  margin-top: 20px;
   width: 150px;
   border-radius: 20px;
   font-weight: lighter;
   border: none;
   text-transform: uppercase;
-
+  color: #fff;
 }
 
 input[type=submit]:hover {
@@ -79,15 +106,19 @@ input[type=submit]:hover {
 }
 
 .msg_success {
+  text-align: center;
   border: 1px solid none;
   width: 300px;
   background: rgb(66, 139, 84);
   color: beige;
+  margin: 0 auto;
 }
 
 .msg_error {
+  text-align: center;
   width: 300px;
   background: #ff0000;
   color: #fff;
+  margin: 0 auto;
 
 }

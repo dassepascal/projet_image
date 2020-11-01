@@ -125,4 +125,17 @@ class Image
       return false;
     }
   }
+  /* public function getimagesize($filename)
+  {
+
+    $size = getimagesize($filename);
+    $fp = fopen($filename, "rb");
+    if ($size && $fp) {
+      header("Content-Type:{$size['mime']}");
+      fpassthru($fp);
+      exit();
+    } else {
+      echo 'error';
+    }
+  }*/
 }

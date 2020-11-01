@@ -54,8 +54,9 @@ if (!empty($_FILES)) {
 
 
 
-      <p>Ajouter des images</p>
+      <h2>Ajouter des images</h2>
       <input type="file" value="" name="upload[]" multiple="mutilple">
+      <br>
       <input id="uploadFormSubmit" name="uploadFormSubmit" type="submit">
     </form>
   </div>
