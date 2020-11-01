@@ -97,35 +97,25 @@ class Image
   {
     $upload_dir = IMAGE_DIR_PATH;
     foreach ($files['upload']['error'] as $key => $error) {
+      $error = 0;
 
-
-      $type = $files['upload']['type'][$key];
-      if ($type == 'image/jpeg') {
-        $error = 0;
-        if ($_FILES['upload']['size'] > 10000000) {
-          var_dump($_FILES['upload']['size']);
-          $error++;
-          var_dump($error);
+      if ($error == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES['upload']['tmp_name'][$key];
+        $name = $_FILES['upload']['name'][$key];
+        if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
         }
-        if ($error == UPLOAD_ERR_OK) {
-
-          $tmp_name = $_FILES['upload']['tmp_name'][$key];
-          $name = $_FILES['upload']['name'][$key];
-
-
-          if (move_uploaded_file($tmp_name, $upload_dir . $name)) {
-          }
-        } else {
-          $error++;
-          var_dump($error);
-        }
+      } else {
+        $error++;
+        var_dump($error);
       }
-    }
-    if ($error == 0) {
-      var_dump($error);
-      return true;
-    } else {
-      return false;
+
+
+      if ($error == 0) {
+        var_dump($error);
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 }
