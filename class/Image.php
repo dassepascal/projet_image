@@ -114,13 +114,15 @@ class Image
         $filename = $_FILES['upload']['name'][$key];
         var_dump($filename);
 
-        if (move_uploaded_file($tmp_name, $upload_dir . $filename)) {
+        if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
+          $error++;
           var_dump('#9');
         } else {
-          $error++;
+
           var_dump('#10');
-          //appel acec $this de la mehode au sein d'une meme classe
-          // $this->createThumbnail($filename);
+          //appel avec $this de la mehode au sein d'une meme classe
+          $this->createThumbnail($filename);
+          //  var_dump(createThumbnail($filename));
         }
 
 
@@ -133,38 +135,50 @@ class Image
       }
     }
   }
-  /* public function createThumbnail($filename)
+  public function createThumbnail($filename)
   {
     //1 definition des chemins des images et des vignettes
     $image = IMAGE_DIR_PATH . $filename;
+    var_dump($image);
     $vignette = THUMB_DIR_PATH . $filename;
 
     //2 récupération des dimensions de l'image source
     $size = getimagesize($image);
     var_dump($size);
     $width = $size[0];
-    $heigth = $size[1];
+    var_dump($width);
+    $height = $size[1];
+    var_dump($height);
 
 
     //3. récupération des valeurs souhaitées pour les vignettes
     //ce cont des valeurs maximales
 
     $width_max = 200;
-    $heigth_max = 200;
+    $height_max = 200;
 
     //4. création de l'image source avec imagecreatefromjpeg
+
     $image_src = imagecreatefromjpeg($image);
+    //header('Content-Type:image/jpeg');
+
+    var_dump($image);
     var_dump($image_src);
+    exit();
 
     //4.1 on crée un ratio (une proportion)
     //et on vérifir que l'image source ne soit pas plus petit que l'image de destination
 
-    if ($width > $width_max || $heigth > $heigth_max) {
+    if ($width > $width_max || $height > $height_max) {
+      var_dump($width);
+      var_dump($height);
 
-      if ($heigth <= $width) {
-        $ratio = $heigth_max / $width;
+      if ($height <= $width) {
+        $ratio = $height_max / $width;
+        var_dump($ratio);
       } else {
-        $ratio = $heigth_max / $heigth;
+        $ratio = $height_max / $height;
+        var_dump($ratio);
       }
     } else {
       $ratio = 1; //l'image crée sera identique à l'originale
@@ -172,11 +186,13 @@ class Image
 
     }
     // 4. creation de l'image noire de destination avec imagecreatetruecolor
-    $image_destination = imagecreatetruecolor(round($width * $ratio), round($heigth * $ratio));
+    $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio));
+    var_dump($image_destination);
+    var_dump('#20');
 
     //5. fabrication de la vignette avec les dimensions souyhaitées
 
-    imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($heigth * $ratio), $width, $heigth);
+    imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height);
 
     // 6. Envoi de la nouvelle image JPEG dans le fichier
     if (!imagejpeg($image_destination, $vignette)) {
@@ -186,5 +202,5 @@ class Image
     } else {
       return true;
     }
-  }*/
+  }
 }
