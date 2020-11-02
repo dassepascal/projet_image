@@ -112,14 +112,13 @@ class Image
         $tmp_name = $_FILES['upload']['tmp_name'][$key];
 
         $filename = $_FILES['upload']['name'][$key];
-        var_dump($filename);
+
 
         if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
           $error++;
-          var_dump('#9');
         } else {
 
-          var_dump('#10');
+
           //appel avec $this de la mehode au sein d'une meme classe
           $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
@@ -127,7 +126,7 @@ class Image
 
 
         if ($error == 0) {
-          var_dump($error);
+
           return true;
         } else {
           return false;
@@ -135,68 +134,62 @@ class Image
       }
     }
   }
+
   public function createThumbnail($filename)
   {
     //1 definition des chemins des images et des vignettes
     $image = IMAGE_DIR_PATH . $filename;
-    var_dump($image);
     $vignette = THUMB_DIR_PATH . $filename;
 
     //2 récupération des dimensions de l'image source
     $size = getimagesize($image);
-    var_dump($size);
     $width = $size[0];
-    var_dump($width);
     $height = $size[1];
-    var_dump($height);
-
-
     //3. récupération des valeurs souhaitées pour les vignettes
     //ce cont des valeurs maximales
-
     $width_max = 200;
     $height_max = 200;
-
     //4. création de l'image source avec imagecreatefromjpeg
 
     $image_src = imagecreatefromjpeg($image);
+    /*---------------------------------------------------------------*/
+    /*traitement en cas d'echec ajouter a voir avec le prof */
+    if (!$image_src) {
+      /* Création d'une image vide */
+      $image_src  = imagecreatetruecolor(150, 30);
+      $bgc = imagecolorallocate($image_src, 255, 255, 255);
+      $tc  = imagecolorallocate($image_src, 0, 0, 0);
+
+      imagefilledrectangle($image_src, 0, 0, 150, 30, $bgc);
+
+      /* On y affiche un message d'erreur */
+      imagestring($image_src, 1, 5, 5, 'Erreur de chargement ' . $image, $tc);
+    }
+    return $image_src;
+    /*--------------------------------------------------------------------------*/
     //header('Content-Type:image/jpeg');
-
-    var_dump($image);
-    var_dump($image_src);
-    exit();
-
     //4.1 on crée un ratio (une proportion)
     //et on vérifir que l'image source ne soit pas plus petit que l'image de destination
-
     if ($width > $width_max || $height > $height_max) {
-      var_dump($width);
-      var_dump($height);
 
       if ($height <= $width) {
         $ratio = $height_max / $width;
-        var_dump($ratio);
       } else {
         $ratio = $height_max / $height;
-        var_dump($ratio);
       }
     } else {
       $ratio = 1; //l'image crée sera identique à l'originale
 
-
     }
     // 4. creation de l'image noire de destination avec imagecreatetruecolor
-    $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio));
-    var_dump($image_destination);
-    var_dump('#20');
-
+    $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio)) or die('impossible de creer un flux d\'image GD');
     //5. fabrication de la vignette avec les dimensions souyhaitées
 
     imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height);
 
-    // 6. Envoi de la nouvelle image JPEG dans le fichier
-    if (!imagejpeg($image_destination, $vignette)) {
 
+    // 6. Envoi de la nouvelle image JPEG dans le fichier
+    if (!imagejpeg($image_destination)) {
       $msg_error = 'la création de la vignettte a échou" pour l\'image ' . $image;
       return $msg_error;
     } else {
