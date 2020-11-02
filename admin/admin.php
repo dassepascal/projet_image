@@ -15,7 +15,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 ?>
 
 
-<?php $image_dir_url = 'http://' . $_SERVER['HTTP_HOST'] . '/projet_imagebis/images/'; ?>
+<?php IMAGE_DIR_URL; ?>
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +39,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
           <p>
             <div class="item">
-              <li><img class="img " src="<?php echo $image_dir_url  . $image['filename'] ?>" />
+              <li><img class="img " src="<?php echo IMAGE_DIR_URL . $image['filename'] ?>" />
             </div>
           </p>
           <p> <?php require('menu.php'); ?></p>
