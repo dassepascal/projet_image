@@ -139,12 +139,14 @@ class Image
   public function createThumbnail($filename)
   {
     //1 definition des chemins des images et des vignettes
-    $image = IMAGE_DIR_PATH . $filename;
-    $vignette = THUMB_DIR_PATH . $filename;
-
+    $image =  'C:/wamp64/www/projet_imagebis/images/vague.jpg';
+    var_dump('#1');
+    $vignette = 'C:/wamp64/www/projet_imagebis/images/thumbnails/vague.jpg';
+    var_dump('#2');
     //2 récupération des dimensions de l'image source
     $size = getimagesize($image);
-
+    var_dump('#3');
+    var_dump($size);
     $width = $size[0];
     $height = $size[1];
     //3. récupération des valeurs souhaitées pour les vignettes
