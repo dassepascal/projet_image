@@ -121,7 +121,7 @@ class Image
 
 
           //appel avec $this de la mehode au sein d'une meme classe
-          $this->createThumbnail($filename);
+          //  $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
         }
 
@@ -136,7 +136,7 @@ class Image
     }
   }
 
-  public function createThumbnail($filename)
+  /* public function createThumbnail($filename)
   {
     //1 definition des chemins des images et des vignettes
     $image =  'C:/wamp64/www/projet_imagebis/images/vague.jpg';
@@ -158,25 +158,25 @@ class Image
     $image_src = imagecreatefromjpeg($image);
 
     /*---------------------------------------------------------------*/
-    /*traitement en cas d'echec ajouter a voir avec le prof */
-    /* if (!$image_src) {
+  /*traitement en cas d'echec ajouter a voir avec le prof */
+  /* if (!$image_src) {
       /* Création d'une image vide */
-    /*  $image_src  = imagecreatetruecolor(150, 30);
+  /*  $image_src  = imagecreatetruecolor(150, 30);
       $bgc = imagecolorallocate($image_src, 255, 255, 255);
       $tc  = imagecolorallocate($image_src, 0, 0, 0);
 
       imagefilledrectangle($image_src, 0, 0, 150, 30, $bgc);
 
       /* On y affiche un message d'erreur */
-    /*   imagestring($image_src, 1, 5, 5, 'Erreur de chargement ' . $image, $tc);*/
-    /*}
+  /*   imagestring($image_src, 1, 5, 5, 'Erreur de chargement ' . $image, $tc);*/
+  /*}
     var_dump('#1');
     return $image_src;*/
-    /*--------------------------------------------------------------------------*/
-    //header('Content-Type:image/jpeg');
-    //4.1 on crée un ratio (une proportion)
-    //et on vérifir que l'image source ne soit pas plus petit que l'image de destination
-    if ($width > $width_max || $height > $height_max) {
+  /*--------------------------------------------------------------------------*/
+  //header('Content-Type:image/jpeg');
+  //4.1 on crée un ratio (une proportion)
+  //et on vérifir que l'image source ne soit pas plus petit que l'image de destination
+  /* if ($width > $width_max || $height > $height_max) {
 
       if ($height <= $width) {
 
@@ -212,5 +212,5 @@ class Image
 
       return true;
     }
-  }
+  }*/
 }
