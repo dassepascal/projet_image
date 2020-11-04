@@ -144,6 +144,7 @@ class Image
 
     //2 récupération des dimensions de l'image source
     $size = getimagesize($image);
+
     $width = $size[0];
     $height = $size[1];
     //3. récupération des valeurs souhaitées pour les vignettes
@@ -153,20 +154,22 @@ class Image
     //4. création de l'image source avec imagecreatefromjpeg
 
     $image_src = imagecreatefromjpeg($image);
+
     /*---------------------------------------------------------------*/
     /*traitement en cas d'echec ajouter a voir avec le prof */
-    if (!$image_src) {
+    /* if (!$image_src) {
       /* Création d'une image vide */
-      $image_src  = imagecreatetruecolor(150, 30);
+    /*  $image_src  = imagecreatetruecolor(150, 30);
       $bgc = imagecolorallocate($image_src, 255, 255, 255);
       $tc  = imagecolorallocate($image_src, 0, 0, 0);
 
       imagefilledrectangle($image_src, 0, 0, 150, 30, $bgc);
 
       /* On y affiche un message d'erreur */
-      imagestring($image_src, 1, 5, 5, 'Erreur de chargement ' . $image, $tc);
-    }
-    return $image_src;
+    /*   imagestring($image_src, 1, 5, 5, 'Erreur de chargement ' . $image, $tc);*/
+    /*}
+    var_dump('#1');
+    return $image_src;*/
     /*--------------------------------------------------------------------------*/
     //header('Content-Type:image/jpeg');
     //4.1 on crée un ratio (une proportion)
@@ -174,26 +177,37 @@ class Image
     if ($width > $width_max || $height > $height_max) {
 
       if ($height <= $width) {
+
         $ratio = $height_max / $width;
       } else {
+
         $ratio = $height_max / $height;
       }
     } else {
+
+
       $ratio = 1; //l'image crée sera identique à l'originale
 
     }
     // 4. creation de l'image noire de destination avec imagecreatetruecolor
     $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio)) or die('impossible de creer un flux d\'image GD');
+
+
+
     //5. fabrication de la vignette avec les dimensions souyhaitées
 
     imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height);
 
 
+
+
     // 6. Envoi de la nouvelle image JPEG dans le fichier
     if (!imagejpeg($image_destination)) {
+
       $msg_error = 'la création de la vignettte a échou" pour l\'image ' . $image;
       return $msg_error;
     } else {
+
       return true;
     }
   }
