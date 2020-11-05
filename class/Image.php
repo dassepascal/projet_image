@@ -135,7 +135,7 @@ class Image
     }
   }
 
-  public function createThumbnail($filename)
+  public function createThumbnail($image)
   {
     //1. definition des chemins des images et des vignettes
     $image = 'C:/wamp64/www/projet_imagebis/images/vague.jpg';
@@ -144,7 +144,7 @@ class Image
     var_dump($vignette);
 
     // 2.recuperation des dimensions de l'image source
-    $size = getimagesize($image);
+    /* $size = getimagesize($image);
     var_dump($size);
     $width = $size[0];
     var_dump($width);
@@ -153,17 +153,18 @@ class Image
     //3 definition des valeurs souhaitees pour les vignettes
     // ce sont des valeurs max
     $max_width = 200;
-    $max_height = 200;
+    $max_height = 200;*/
 
     // creation de l'image source avec imagecreatefromjpeg
-    $image_src = imagecreatefromjpeg($image);
+    $image_src = @imagecreatefromjpeg($image);
     var_dump($image_src);
+    // imagejpeg($image_src, 'dir_test/vague.jpg');
 
     // 4.1
-    if ($width > $max_width || $height > $max_height) {
-      var_dump('#1');
-    }
+    /*if ($width > $max_width || $height > $max_height) {
+      var_dump('#1');*/
+    /*  }*/
   }
 }
 $test = new Image;
-$test->createThumbnail($filename);
+$test->createThumbnail($image);
