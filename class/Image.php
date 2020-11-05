@@ -120,14 +120,9 @@ class Image
         } else {
 
           var_dump('chargement');
-<<<<<<< HEAD
           //appel avec $this de la mehode au sein d'une meme classe
-          //  $this->createThumbnail($filename);
-          //  var_dump(createThumbnail($filename));
-=======
-
           $this->createThumbnail($filename);
->>>>>>> flux-image.php
+          //  var_dump(createThumbnail($filename));
         }
 
 
