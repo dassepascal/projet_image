@@ -120,9 +120,14 @@ class Image
         } else {
 
           var_dump('chargement');
+<<<<<<< HEAD
           //appel avec $this de la mehode au sein d'une meme classe
           //  $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
+=======
+
+          $this->createThumbnail($filename);
+>>>>>>> flux-image.php
         }
 
 
@@ -147,9 +152,7 @@ class Image
 
     // 2.recuperation des dimensions de l'image source
     $size = getimagesize($image);
-    var_dump($filename);
-    var_dump('#1');
-    var_dump($size);
+
     $width = $size[0];
 
     $height = $size[1];
