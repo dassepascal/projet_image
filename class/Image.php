@@ -118,7 +118,7 @@ class Image
           $error++;
         } else {
 
-
+          var_dump('chargement');
           //appel avec $this de la mehode au sein d'une meme classe
           $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
@@ -135,36 +135,55 @@ class Image
     }
   }
 
-  public function createThumbnail($image)
+  public function createThumbnail($filename)
   {
+    var_dump(('thumbnails'));
     //1. definition des chemins des images et des vignettes
-    $image = 'C:/wamp64/www/projet_imagebis/images/vague.jpg';
-    var_dump($image);
-    $vignette = 'C:/wamp64/www/projet_imagebis/images/thumbnails/vague.jpg';
-    var_dump($vignette);
+    $image            = IMAGE_DIR_PATH . $filename;
+    // var_dump($image);
+    $vignette        = THUMB_DIR_PATH . $filename;
+    //var_dump($vignette);
 
     // 2.recuperation des dimensions de l'image source
-    /* $size = getimagesize($image);
+    $size = getimagesize($image);
+    var_dump($filename);
+    var_dump('#1');
     var_dump($size);
     $width = $size[0];
-    var_dump($width);
+
     $height = $size[1];
-    var_dump($height);
+
     //3 definition des valeurs souhaitees pour les vignettes
     // ce sont des valeurs max
     $max_width = 200;
-    $max_height = 200;*/
+    $max_height = 200;
 
     // creation de l'image source avec imagecreatefromjpeg
-    $image_src = @imagecreatefromjpeg($image);
+    $image_src = imagecreatefromjpeg($image);
     var_dump($image_src);
     // imagejpeg($image_src, 'dir_test/vague.jpg');
 
     // 4.1
-    /*if ($width > $max_width || $height > $max_height) {
-      var_dump('#1');*/
-    /*  }*/
+    if ($width > $max_width || $height > $max_height) {
+      if ($height <= $width) {
+        var_dump('hauteur<=largeur');
+        $ratio = $max_width / $width;
+      } else {
+        $ratio = $max_height / $height;
+      }
+    } else {
+      $ratio = 1;
+      var_dump('image=original');
+    }
+    $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio));
+    var_dump($image_destination);
+    imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height);
+    var_dump(imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height));
+    if (!imagejpeg($image_destination, $vignette)) {
+      $msg_error = ' La création de la vignette a échou pour l\'image ' . $image;
+      return $msg_error;
+    } else {
+      return true;
+    }
   }
 }
-$test = new Image;
-$test->createThumbnail($image);
