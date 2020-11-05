@@ -150,6 +150,19 @@ class Image
     var_dump($width);
     $height = $size[1];
     var_dump($height);
+    //3 definition des valeurs souhaitees pour les vignettes
+    // ce sont des valeurs max
+    $max_width = 200;
+    $max_height = 200;
+
+    // creation de l'image source avec imagecreatefromjpeg
+    $image_src = imagecreatefromjpeg($image);
+    var_dump($image_src);
+
+    // 4.1
+    if ($width > $max_width || $height > $max_height) {
+      var_dump('#1');
+    }
   }
 }
 $test = new Image;
