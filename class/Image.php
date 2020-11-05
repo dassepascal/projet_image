@@ -119,7 +119,7 @@ class Image
           $error++;
         } else {
 
-
+          var_dump('chargement');
           //appel avec $this de la mehode au sein d'une meme classe
           //  $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
@@ -138,6 +138,7 @@ class Image
 
   /* public function createThumbnail($filename)
   {
+<<<<<<< HEAD
     //1 definition des chemins des images et des vignettes
     $image =  'C:/wamp64/www/projet_imagebis/images/vague.jpg';
     var_dump('#1');
@@ -146,16 +147,32 @@ class Image
     //2 récupération des dimensions de l'image source
     $size = getimagesize($image);
     var_dump('#3');
+=======
+    var_dump(('thumbnails'));
+    //1. definition des chemins des images et des vignettes
+    $image            = IMAGE_DIR_PATH . $filename;
+    // var_dump($image);
+    $vignette        = THUMB_DIR_PATH . $filename;
+    //var_dump($vignette);
+
+    // 2.recuperation des dimensions de l'image source
+    $size = getimagesize($image);
+    var_dump($filename);
+    var_dump('#1');
+>>>>>>> flux-image.php
     var_dump($size);
     $width = $size[0];
-    $height = $size[1];
-    //3. récupération des valeurs souhaitées pour les vignettes
-    //ce cont des valeurs maximales
-    $width_max = 200;
-    $height_max = 200;
-    //4. création de l'image source avec imagecreatefromjpeg
 
+    $height = $size[1];
+
+    //3 definition des valeurs souhaitees pour les vignettes
+    // ce sont des valeurs max
+    $max_width = 200;
+    $max_height = 200;
+
+    // creation de l'image source avec imagecreatefromjpeg
     $image_src = imagecreatefromjpeg($image);
+<<<<<<< HEAD
 
     /*---------------------------------------------------------------*/
   /*traitement en cas d'echec ajouter a voir avec le prof */
@@ -177,8 +194,15 @@ class Image
   //4.1 on crée un ratio (une proportion)
   //et on vérifir que l'image source ne soit pas plus petit que l'image de destination
   /* if ($width > $width_max || $height > $height_max) {
+=======
+    var_dump($image_src);
+    // imagejpeg($image_src, 'dir_test/vague.jpg');
+>>>>>>> flux-image.php
 
+    // 4.1
+    if ($width > $max_width || $height > $max_height) {
       if ($height <= $width) {
+<<<<<<< HEAD
 
         $ratio = $height_max / $width;
       } else {
@@ -207,6 +231,23 @@ class Image
     if (!imagejpeg($image_destination)) {
 
       $msg_error = 'la création de la vignettte a échou" pour l\'image ' . $image;
+=======
+        var_dump('hauteur<=largeur');
+        $ratio = $max_width / $width;
+      } else {
+        $ratio = $max_height / $height;
+      }
+    } else {
+      $ratio = 1;
+      var_dump('image=original');
+    }
+    $image_destination = imagecreatetruecolor(round($width * $ratio), round($height * $ratio));
+    var_dump($image_destination);
+    imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height);
+    var_dump(imagecopyresampled($image_destination, $image_src, 0, 0, 0, 0, round($width * $ratio), round($height * $ratio), $width, $height));
+    if (!imagejpeg($image_destination, $vignette)) {
+      $msg_error = ' La création de la vignette a échou pour l\'image ' . $image;
+>>>>>>> flux-image.php
       return $msg_error;
     } else {
 

@@ -15,7 +15,11 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 ?>
 
 
+<<<<<<< HEAD
 <?php IMAGE_DIR_URL; ?>
+=======
+
+>>>>>>> flux-image.php
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +43,11 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
           <p>
             <div class="item">
+<<<<<<< HEAD
               <li><img class="img " src="<?php echo IMAGE_DIR_URL . $image['filename'] ?>" />
+=======
+              <li><img class="img " src="<?php echo THUMB_DIR_URL  . $image['filename'] ?>" />
+>>>>>>> flux-image.php
             </div>
           </p>
           <p> <?php require('menu.php'); ?></p>
