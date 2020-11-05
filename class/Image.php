@@ -119,9 +119,8 @@ class Image
         } else {
 
           var_dump('chargement');
-          //appel avec $this de la mehode au sein d'une meme classe
+
           $this->createThumbnail($filename);
-          //  var_dump(createThumbnail($filename));
         }
 
 
@@ -146,9 +145,7 @@ class Image
 
     // 2.recuperation des dimensions de l'image source
     $size = getimagesize($image);
-    var_dump($filename);
-    var_dump('#1');
-    var_dump($size);
+
     $width = $size[0];
 
     $height = $size[1];
