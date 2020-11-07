@@ -23,8 +23,8 @@ class Image
 
           $images[$i]['filename'] = ($entry);
           //utilisation de $this pour appeler la methode getImageData
-          $image_data = $this->getImageData($entry);
 
+          $image_data = $this->getImageData($entry);
 
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
