@@ -21,6 +21,9 @@ if (!empty($_FILES)) {
 
 
   $images = $image->upload($_FILES);
+  /* $filename = $files['upload']['name']['$key'];
+  $filename = $this->cleantText($filename);
+  var_dump($filename);*/
 
   if ($images === true) {
     var_dump($images);
