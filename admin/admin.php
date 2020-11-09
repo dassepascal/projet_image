@@ -14,61 +14,52 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
 ?>
 
+<?php require('header.php'); ?>
 
 
-<!DOCTYPE html>
-<html>
 
-<head>
-  <title>admin</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
+<div class="container">
 
-<body>
+  <h1><?php echo WEB_TITLE ?></h1>
 
-  <div class="container">
+  <ul>
 
-    <h1><?php echo WEB_TITLE ?></h1>
-
-    <ul>
-
-      <?php foreach ($images as $image) : ?>
-        <div class="container-image">
+    <?php foreach ($images as $image) : ?>
+      <div class="container-image">
 
 
-          <p>
-            <div class="item">
-              <li><img class="img " src="<?php echo THUMB_DIR_URL  . $image['filename'] ?>" />
-            </div>
-          </p>
-          <p> <?php require('menu.php'); ?></p>
-        </div>
+        <p>
+          <div class="item">
+            <li><img class="img " src="<?php echo THUMB_DIR_URL  . $image['filename'] ?>" />
+          </div>
+        </p>
+        <p> <?php require('menu.php'); ?></p>
+      </div>
 
-        <div id="form">
-          <form method="post" action="../process/process_image.php">
+      <div id="form">
+        <form method="post" action="../process/process_image.php">
 
-            <?php if (!empty($image['title'])) : ?>
-              <input type="hidden" name="update" value="1" />
+          <?php if (!empty($image['title'])) : ?>
+            <input type="hidden" name="update" value="1" />
 
-            <?php endif ?>
-            <p>Nom du fichier image :</p>
-            <p>Ajoutez ou modifiez des informations pour cette image </p>
-            <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
+          <?php endif ?>
+          <p>Nom du fichier image :</p>
+          <p>Ajoutez ou modifiez des informations pour cette image </p>
+          <p> Titre :<input type="text" name="title" value="<?php echo $image['title']  ?>"></p>
 
-            <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
-            <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
-            <div id="btn">
-              <p><input type="submit" name="formImageSubmit" value="validez" /></p>
-            </div>
+          <input type="hidden" name="filename" value="<?php echo $image['filename']; ?>" />
+          <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
+          <div id="btn">
+            <p><input type="submit" name="formImageSubmit" value="validez" /></p>
+          </div>
 
-          </form>
-        </div>
-        </li>
-      <?php endforeach ?>
+        </form>
+      </div>
+      </li>
+    <?php endforeach ?>
 
-    </ul>
-  </div>
+  </ul>
+</div>
 </body>
 
 </html>

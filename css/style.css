@@ -33,6 +33,11 @@ body {
 }
 
 
+li {
+  list-style: none;
+}
+
+
 .container-image {
   display: flex;
   background-color: azure;

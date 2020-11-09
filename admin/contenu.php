@@ -16,9 +16,14 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
 // affichage;
 ?>
+<?php require('header.php'); ?>
 <?php foreach ($images as $image) : ?>
-  <!-- <li><img src="<?php/* echo $image_dir_url  . $image*/  ?>" /></li>-->
 
-  <li><img src="<?php echo IMAGE_DIR_URL . $image['filename']  ?>" /></li>
+
+  <li>
+    <p><img src="<?php echo IMAGE_DIR_URL . $image['filename']  ?>" /> </p>
+    <p><?php echo $image['title'] ?></p>
+    <p><?php echo $image['description'] ?></p>
+  </li>
 
 <?php endforeach ?>
