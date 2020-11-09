@@ -25,7 +25,7 @@ class Image
           //utilisation de $this pour appeler la methode getImageData
 
           $image_data = $this->getImageData($entry);
-
+          var_dump($image_data);
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
         }
@@ -43,6 +43,7 @@ class Image
     //requete
 
     $result = $mysqli->query('SELECT id,title,description,filename FROM image WHERE filename = "' . $filename . '"');
+    var_dump($result);
     if (!$result) {
       echo 'une erreur est survenue lors de la recuperation des données dans la base. Message d\'errreur : ' . $mysqli->error;
       return false;
