@@ -52,24 +52,7 @@ class Image
 
     $row = $result->fetch_array();
 
-    /*if (!is_null($row)) {
-      $image_data['id'] = $row['id'];
-      $image_data['title'] = $row['title'];
-      $image_data['description'] = $row['description'];
-      $image_data['filename'] = $row['filename'];
-      return $image_data;
-    } else {
-      $image_data['id'] = '';
-      $image_data['title'] = '';
-      $image_data['description'] = '';
-      $image_data['filename'] = '';
-      return $image_data;
-    }*/
-    /*
-    if (is_null($row))
-      return ['title' => '', 'description' => ''];
-    else
-      return $row;*/
+
 
     return (is_null($row)) ? ['title' => '', 'description' => ''] : $row;
   }
@@ -112,14 +95,14 @@ class Image
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
 
-      $error = 0;
 
-      //$type = $files['upload']['type'][$key];
-      // if ($type == 'image/jpeg') {
 
-      // if ($_FILES['upload']['size'] > 10000000) {
-      //  $error++;
-      //  var_dump($error);
+      /*$type = $files['upload']['type'][$key];
+       if ($type == 'image/jpeg') {
+
+       /*if ($_FILES['upload']['size'] > 10000000) {
+        $error++;
+        var_dump($error);*/
 
       if ($error == UPLOAD_ERR_OK) {
 
