@@ -25,6 +25,7 @@ class Image
           //utilisation de $this pour appeler la methode getImageData
 
           $image_data = $this->getImageData($entry);
+
           var_dump($image_data);
           $images[$i]['title'] = $image_data['title'];
           $images[$i]['description'] = $image_data['description'];
@@ -42,25 +43,35 @@ class Image
     require('../process/connection.php');
     //requete
 
-    $result = $mysqli->query('SELECT id,title,description,filename FROM image WHERE filename = "' . $filename . '"');
-    var_dump($result);
+    $result = $mysqli->query('SELECT id, title, description ,filename FROM image WHERE filename = "' . $filename . '"');
+
     if (!$result) {
       echo 'une erreur est survenue lors de la recuperation des données dans la base. Message d\'errreur : ' . $mysqli->error;
       return false;
-    } else {
-      $row = $result->fetch_array();
-
-      $image_data['id'] = $row['id'];
-
-      $image_data['title'] = $row['title'];
-
-      $image_data['description'] = $row['description'];
-
-      $image_data['filename'] = $row['filename'];
-
-
-      return $image_data;
     }
+
+    $row = $result->fetch_array();
+
+    /*if (!is_null($row)) {
+      $image_data['id'] = $row['id'];
+      $image_data['title'] = $row['title'];
+      $image_data['description'] = $row['description'];
+      $image_data['filename'] = $row['filename'];
+      return $image_data;
+    } else {
+      $image_data['id'] = '';
+      $image_data['title'] = '';
+      $image_data['description'] = '';
+      $image_data['filename'] = '';
+      return $image_data;
+    }*/
+    /*
+    if (is_null($row))
+      return ['title' => '', 'description' => ''];
+    else
+      return $row;*/
+
+    return (is_null($row)) ? ['title' => '', 'description' => ''] : $row;
   }
 
   public function insertImage($title, $descr, $filename)
