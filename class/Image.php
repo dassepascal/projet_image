@@ -46,8 +46,6 @@ class Image
       $msg_error = 'une erreur est survenue lors de l\'insertion des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
       $msg_error .= '<br/>Aucune information n\'a été enregistrée.';
       return $msg_error;
-      // echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
-      // return false;
     } else {
       return true;
       $mysqli->close();
@@ -99,7 +97,7 @@ class Image
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
 
-      $error = 0;
+
 
       //$type = $files['upload']['type'][$key];
       // if ($type == 'image/jpeg') {
