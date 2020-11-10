@@ -63,13 +63,14 @@ class Image
     } else {
       $row = $result->fetch_array();
 
-      $image_data['id'] = $row['id'];
+      /* $image_data['id'] = $row['id'];
 
       $image_data['title'] = $row['title'];
 
       $image_data['description'] = $row['description'];
 
-      $image_data['filename'] = $row['filename'];
+      $image_data['filename'] = $row['filename'];*/
+      return (is_null($row)) ? ['title' => '', 'description' => ''] : $row;
 
 
       return $image_data;
