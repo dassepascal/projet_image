@@ -17,13 +17,16 @@ $uploads_dir = 'c:\wamp64/www/projet_imagebis/images/';
 
 if (!empty($_FILES)) {
   $image = new Image();
-  var_dump($image);
+  //var_dump($image);
 
 
   $images = $image->upload($_FILES);
+  /* $filename = $files['upload']['name']['$key'];
+  $filename = $this->cleantText($filename);
+  var_dump($filename);*/
 
   if ($images === true) {
-    var_dump($images);
+    // var_dump($images);
 
     $msg_success = 'Le chargement a réussi';
   } else {
@@ -36,7 +39,7 @@ if (!empty($_FILES)) {
 <html>
 
 <head>
-  <title>admin</title>
+  <title>upload</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../css/style.css">
 </head>

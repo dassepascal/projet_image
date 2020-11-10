@@ -35,7 +35,7 @@ if (isset($_POST['formImageSubmit'])) {
       var_dump($insertImage);
       if (true === $insertImage) {
         //header('location:' . WEB_DIR_URL . 'admin.php?insertImage=ok');
-        $msg_sucess = 'les informations ont bien été enregistrées dans la base de données.<a href="' . WEB_DIR_URL . 'admin/admin.php">retour</a>';
+        $msg_success = 'les informations ont bien été enregistrées dans la base de données.<a href="' . WEB_DIR_URL . 'admin/admin.php">retour</a>';
       } else {
         $msg_error = $insertImage;
       }
@@ -44,4 +44,4 @@ if (isset($_POST['formImageSubmit'])) {
 }
 
 if (isset($msg_error)) echo $msg_error;
-if (isset($msg_sucess)) echo $msg_sucess;
+if (isset($msg_success)) echo $msg_success;

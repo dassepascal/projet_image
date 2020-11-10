@@ -65,14 +65,40 @@ class Image
       $msg_error = 'une erreur est survenue lors de l\'insertion des données dans la base.<br /> Message d\'erreur de MySQL est: ' . $mysqli->error;
       $msg_error .= '<br/>Aucune information n\'a été enregistrée.';
       return $msg_error;
-      // echo 'une erreur est survenue lors de l\'insertion des données dans la base. Message d\'erreur : ' . $mysqli->error;
-      // return false;
     } else {
       return true;
       $mysqli->close();
     }
   }
+<<<<<<< HEAD
 
+=======
+  public function getImageData($filename)
+  {
+    require('../process/connection.php');
+    //requete
+
+    $result = $mysqli->query('SELECT id,title,description,filename FROM image WHERE filename = "' . $filename . '"');
+    if (!$result) {
+      echo 'une erreur est survenue lors de la recuperation des données dans la base. Message d\'errreur : ' . $mysqli->error;
+      return false;
+    } else {
+      $row = $result->fetch_array();
+
+      /* $image_data['id'] = $row['id'];
+
+      $image_data['title'] = $row['title'];
+
+      $image_data['description'] = $row['description'];
+
+      $image_data['filename'] = $row['filename'];*/
+      return (is_null($row)) ? ['title' => '', 'description' => ''] : $row;
+
+
+      return $image_data;
+    }
+  }
+>>>>>>> rename
   public function updateImageData($title, $descr, $filename)
   {
     require('../process/connection.php');
@@ -92,8 +118,10 @@ class Image
   public function upload($files)
   {
     $upload_dir = IMAGE_DIR_PATH;
+    var_dump($upload_dir);
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
+<<<<<<< HEAD
 
 
 
@@ -119,19 +147,51 @@ class Image
           //appel avec $this de la mehode au sein d'une meme classe
           $this->createThumbnail($filename);
           //  var_dump(createThumbnail($filename));
-        }
-
-
-        if ($error == 0) {
-
-          return true;
-        } else {
-          return false;
+=======
+      //controle de l'extension de l'image et de la taille
+      $type = $files['upload']['type'][$key];
+      if ($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png') {
+        $sizes = $_FILES['upload']['size'];
+        foreach ($sizes as $size) {
+          if ($size > 100000 == true) {
+            $error++;
+          }
+>>>>>>> rename
         }
       }
     }
-  }
+    //  var_dump($error);
+    // if($error  == UPLOAD_ERR_OK) verifie si aucune erreur est survenue
+    if ($error == UPLOAD_ERR_OK) {
+      $upload_dir = IMAGE_DIR_PATH;
+      echo '116';
+      var_dump($upload_dir);
+      $tmp_name = $_FILES['upload']['tmp_name'][$key];
+      $filename = $_FILES['upload']['name'][$key];
+      var_dump($filename);
+      //$filename = $files['upload']['name'][$key];
+      $filename = $this->cleantText($filename);
 
+      if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
+        var_dump('result');
+        var_dump(move_uploaded_file($tmp_name, $upload_dir . $filename));
+        $error++;
+      } else {
+        var_dump('chargement');
+        //appel avec $this de la mehode au sein d'une meme classe
+        $this->createThumbnail($filename);
+        //  var_dump(createThumbnail($filename));
+      }
+
+
+      if ($error == 0) {
+
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
   public function createThumbnail($filename)
   {
     var_dump(('thumbnails'));
@@ -181,5 +241,14 @@ class Image
 
       return true;
     }
+  }
+  public function cleantText($filename)
+  {
+    $special = array(' ', '\'', 'á', 'à', 'â', 'ã', 'ä', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'î', 'í', 'ï', 'ò', 'ó', 'ó', 'ô', 'õ', 'ö', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'É', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ù', 'Ú', 'Û', 'Ü', 'Ý',);
+    $normal = array('_', '', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'A', 'A', 'A', 'A', 'U', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'U', 'Y');
+    $mixed = "' ' '\''áàâãäæçèéêëìîíïòóóôõöùúûüýÿÀÁÂÃÄÅÆÇÈÉÉËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ";
+    $filename = str_replace($special, $normal, $filename);
+    $filename = strtolower($filename);
+    return $filename;
   }
 }
