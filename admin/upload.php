@@ -39,7 +39,7 @@ if (!empty($_FILES)) {
 <html>
 
 <head>
-  <title>admin</title>
+  <title>upload</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../css/style.css">
 </head>
