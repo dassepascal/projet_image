@@ -17,7 +17,7 @@ $uploads_dir = 'c:\wamp64/www/projet_imagebis/images/';
 
 if (!empty($_FILES)) {
   $image = new Image();
-  var_dump($image);
+  //var_dump($image);
 
 
   $images = $image->upload($_FILES);
@@ -26,7 +26,7 @@ if (!empty($_FILES)) {
   var_dump($filename);*/
 
   if ($images === true) {
-    var_dump($images);
+    // var_dump($images);
 
     $msg_success = 'Le chargement a réussi';
   } else {

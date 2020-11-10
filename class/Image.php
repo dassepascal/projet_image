@@ -113,11 +113,16 @@ class Image
     // if($error  == UPLOAD_ERR_OK) verifie si aucune erreur est survenue
     if ($error == UPLOAD_ERR_OK) {
       $upload_dir = IMAGE_DIR_PATH;
+      echo '116';
+      var_dump($upload_dir);
       $tmp_name = $_FILES['upload']['tmp_name'][$key];
       $filename = $_FILES['upload']['name'][$key];
+      var_dump($filename);
       //$filename = $files['upload']['name'][$key];
       $filename = $this->cleantText($filename);
+
       if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
+        var_dump('result');
         var_dump(move_uploaded_file($tmp_name, $upload_dir . $filename));
         $error++;
       } else {
@@ -191,8 +196,8 @@ class Image
     $special = array(' ', '\'', 'á', 'à', 'â', 'ã', 'ä', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'î', 'í', 'ï', 'ò', 'ó', 'ó', 'ô', 'õ', 'ö', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'É', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ù', 'Ú', 'Û', 'Ü', 'Ý',);
     $normal = array('_', '', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'A', 'A', 'A', 'A', 'U', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'U', 'Y');
     $mixed = "' ' '\''áàâãäæçèéêëìîíïòóóôõöùúûüýÿÀÁÂÃÄÅÆÇÈÉÉËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ";
-    $result = str_replace($special, $normal, $filename);
-    $result = strtolower($result);
-    echo $result;
+    $filename = str_replace($special, $normal, $filename);
+    $filename = strtolower($filename);
+    return $filename;
   }
 }
