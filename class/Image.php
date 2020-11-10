@@ -96,44 +96,41 @@ class Image
     $upload_dir = IMAGE_DIR_PATH;
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
-
-
-
-      //$type = $files['upload']['type'][$key];
-      // if ($type == 'image/jpeg') {
-
-      // if ($_FILES['upload']['size'] > 10000000) {
-      //  $error++;
-      //  var_dump($error);
-
-      if ($error == UPLOAD_ERR_OK) {
-
-        $tmp_name = $_FILES['upload']['tmp_name'][$key];
-
-        $filename = $_FILES['upload']['name'][$key];
-
-
-        if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
-          $error++;
-        } else {
-
-          var_dump('chargement');
-          //appel avec $this de la mehode au sein d'une meme classe
-          $this->createThumbnail($filename);
-          //  var_dump(createThumbnail($filename));
-        }
-
-
-        if ($error == 0) {
-
-          return true;
-        } else {
-          return false;
+      $type = $files['upload']['type'][$key];
+      if ($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png') {
+        var_dump($type);
+        $sizes = $_FILES['upload']['size'];
+        foreach ($sizes as $size) {
+          if ($size > 100000 == true) {
+            $error++;
+          }
         }
       }
     }
-  }
+    //  var_dump($error);
+    // if($error  == UPLOAD_ERR_OK) verifie si aucune erreur est survenue
+    if ($error == UPLOAD_ERR_OK) {
 
+      $tmp_name = $_FILES['upload']['tmp_name'][$key];
+      $filename = $_FILES['upload']['name'][$key];
+      if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
+        $error++;
+      } else {
+        var_dump('chargement');
+        //appel avec $this de la mehode au sein d'une meme classe
+        $this->createThumbnail($filename);
+        //  var_dump(createThumbnail($filename));
+      }
+
+
+      if ($error == 0) {
+
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
   public function createThumbnail($filename)
   {
     var_dump(('thumbnails'));
