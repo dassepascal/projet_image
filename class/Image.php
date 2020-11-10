@@ -94,11 +94,12 @@ class Image
   public function upload($files)
   {
     $upload_dir = IMAGE_DIR_PATH;
+    var_dump($upload_dir);
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
+      //controle de l'extension de l'image et de la taille
       $type = $files['upload']['type'][$key];
       if ($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png') {
-        var_dump($type);
         $sizes = $_FILES['upload']['size'];
         foreach ($sizes as $size) {
           if ($size > 100000 == true) {
@@ -110,10 +111,13 @@ class Image
     //  var_dump($error);
     // if($error  == UPLOAD_ERR_OK) verifie si aucune erreur est survenue
     if ($error == UPLOAD_ERR_OK) {
-
+      $upload_dir = IMAGE_DIR_PATH;
       $tmp_name = $_FILES['upload']['tmp_name'][$key];
       $filename = $_FILES['upload']['name'][$key];
+      // $filename = $files['upload']['name'][$key];
+      $filename = $this->cleantText($filename);
       if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
+        var_dump(move_uploaded_file($tmp_name, $upload_dir . $filename));
         $error++;
       } else {
         var_dump('chargement');
@@ -187,6 +191,7 @@ class Image
     $normal = array('_', '', 'a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'A', 'A', 'A', 'A', 'U', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'U', 'Y');
     $mixed = "' ' '\''áàâãäæçèéêëìîíïòóóôõöùúûüýÿÀÁÂÃÄÅÆÇÈÉÉËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ";
     $result = str_replace($special, $normal, $filename);
+    $result = strtolower($result);
     echo $result;
   }
 }
