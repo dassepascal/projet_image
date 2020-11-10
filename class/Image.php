@@ -70,35 +70,7 @@ class Image
       $mysqli->close();
     }
   }
-<<<<<<< HEAD
 
-=======
-  public function getImageData($filename)
-  {
-    require('../process/connection.php');
-    //requete
-
-    $result = $mysqli->query('SELECT id,title,description,filename FROM image WHERE filename = "' . $filename . '"');
-    if (!$result) {
-      echo 'une erreur est survenue lors de la recuperation des données dans la base. Message d\'errreur : ' . $mysqli->error;
-      return false;
-    } else {
-      $row = $result->fetch_array();
-
-      /* $image_data['id'] = $row['id'];
-
-      $image_data['title'] = $row['title'];
-
-      $image_data['description'] = $row['description'];
-
-      $image_data['filename'] = $row['filename'];*/
-      return (is_null($row)) ? ['title' => '', 'description' => ''] : $row;
-
-
-      return $image_data;
-    }
-  }
->>>>>>> rename
   public function updateImageData($title, $descr, $filename)
   {
     require('../process/connection.php');
@@ -121,33 +93,6 @@ class Image
     var_dump($upload_dir);
     foreach ($files['upload']['error'] as $key => $error) {
       $error = 0;
-<<<<<<< HEAD
-
-
-
-      /*$type = $files['upload']['type'][$key];
-       if ($type == 'image/jpeg') {
-
-       /*if ($_FILES['upload']['size'] > 10000000) {
-        $error++;
-        var_dump($error);*/
-
-      if ($error == UPLOAD_ERR_OK) {
-
-        $tmp_name = $_FILES['upload']['tmp_name'][$key];
-
-        $filename = $_FILES['upload']['name'][$key];
-
-
-        if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
-          $error++;
-        } else {
-
-          var_dump('chargement');
-          //appel avec $this de la mehode au sein d'une meme classe
-          $this->createThumbnail($filename);
-          //  var_dump(createThumbnail($filename));
-=======
       //controle de l'extension de l'image et de la taille
       $type = $files['upload']['type'][$key];
       if ($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png') {
@@ -156,7 +101,6 @@ class Image
           if ($size > 100000 == true) {
             $error++;
           }
->>>>>>> rename
         }
       }
     }
