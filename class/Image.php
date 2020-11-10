@@ -115,7 +115,7 @@ class Image
       $upload_dir = IMAGE_DIR_PATH;
       $tmp_name = $_FILES['upload']['tmp_name'][$key];
       $filename = $_FILES['upload']['name'][$key];
-      // $filename = $files['upload']['name'][$key];
+      //$filename = $files['upload']['name'][$key];
       $filename = $this->cleantText($filename);
       if (move_uploaded_file($tmp_name, $upload_dir . $filename) === false) {
         var_dump(move_uploaded_file($tmp_name, $upload_dir . $filename));
