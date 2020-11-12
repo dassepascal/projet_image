@@ -195,4 +195,8 @@ class Image
     $filename = strtolower($filename);
     return $filename;
   }
+  public function deleteImage($filename)
+  {
+    return $filename;
+  }
 }
