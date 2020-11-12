@@ -197,6 +197,10 @@ class Image
   }
   public function deleteImage($filename)
   {
+    //suppression des fichiers : image et vignette
+    $path_images = IMAGE_DIR_PATH . $filename;
+    var_dump($filename);
+    var_dump($path_images);
     return $filename;
   }
 }
