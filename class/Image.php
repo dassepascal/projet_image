@@ -217,6 +217,17 @@ class Image
     } else {
       $msg_error[] = 'Le fichier vignette n\existe pas';
     }
-    return $filename;
+    //suppression des données dans la base
+    require('../process/connection.php');
+    //requete delete
+    var_dump('delete1');
+
+    if (!$mysqli->query('DELETE FROM image WHERE filename = "' . $filename . '"')) {
+      var_dump($filename);
+      exit();
+    } else {
+      var_dump($filename);
+      return $filename;
+    }
   }
 }
