@@ -195,12 +195,28 @@ class Image
     $filename = strtolower($filename);
     return $filename;
   }
+
   public function deleteImage($filename)
   {
     //suppression des fichiers : image et vignette
     $path_images = IMAGE_DIR_PATH . $filename;
-    var_dump($filename);
-    var_dump($path_images);
+    $path_thumbs = THUMB_DIR_PATH . $filename;
+
+    if (!unlink($path_images)) {
+
+      $msg_error[] = 'une erreur est survenue lors de la suppression du fichier image';
+    } else {
+      $msg_error[] = 'Le fichier image n\existe pas';
+    }
+    if (file_exists($path_thumbs)) {
+
+      if (!unlink($path_thumbs)) {
+
+        $msg_error[] = 'une erreur est survenue lors de la suppression du fichier vignette';
+      }
+    } else {
+      $msg_error[] = 'Le fichier vignette n\existe pas';
+    }
     return $filename;
   }
 }
