@@ -61,6 +61,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
             <p>Description <br><textarea name="descr" cols="50" rows=5><?php echo $image['description']; ?></textarea></p>
             <div id="btn">
               <p><input type="submit" name="formImageSubmit" value="validez" /></p>
+              <p><a href="../process/process_delete.php?delete=<?php echo $image['filename'] ?>">Delete</a></p>
             </div>
 
           </form>
