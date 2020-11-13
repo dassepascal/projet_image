@@ -8,7 +8,7 @@ class User
 
     require('connection.php');
     //requete
-    $result = $mysqli->query('SELECT COUNT(id),id,login,password FROM user WHERE login ="' . $login . '" AND password = "' . $login . '"');
+    $result = $mysqli->query('SELECT COUNT(id),id,login,password FROM user WHERE login ="' . $login . '" AND password = "' . $password . '"');
 
     if (!$result) {
       echo 'une erreur est survenue lors de la récupération des données dans la base. Message d\'erreur: ' . $mysqli->error;
