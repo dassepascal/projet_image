@@ -5,7 +5,7 @@ echo '<h4>admin</h4>';
 //require('class/Image.php');
 require('../process/process_image.php');
 //require('contenu.php');
-
+require('../process/process_auth.php');
 
 $image = new Image();
 

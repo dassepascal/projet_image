@@ -19,6 +19,5 @@ if (isset($_POST['submitLoginForm'])) {
 
     header('location: http://localhost:8080/projet_imagebis/admin/admin.php');
     var_dump(header('location: http://localhost:8080/projet_imagebis/admin/admin.php'));
-    $msg_success = 'efface';
   }
 }
