@@ -15,5 +15,7 @@ if (isset($_POST['submitLoginForm'])) {
     var_dump($authuser);
     $msg_error = 'le compte n\'est pas reconnu';
     echo $msg_error;
+  } else {
+    echo 'succe';
   }
 }
