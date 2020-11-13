@@ -128,3 +128,11 @@ input[type=submit]:hover {
   margin: 0 auto;
 
 }
+
+/*login*/
+#login {
+  width: 500px;
+  margin: 50px auto;
+  border: 1px solid #ff0000;
+  padding: 20px;
+}
