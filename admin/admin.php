@@ -44,6 +44,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
             </div>
           </p>
           <p> <?php require('menu.php'); ?></p>
+
         </div>
 
         <div id="form">
