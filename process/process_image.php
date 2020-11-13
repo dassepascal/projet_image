@@ -44,4 +44,4 @@ if (isset($_POST['formImageSubmit'])) {
 }
 
 if (isset($msg_error)) echo $msg_error;
-if (isset($msg_success)) echo $msg_success;
+//if (isset($msg_success)) echo $msg_success;

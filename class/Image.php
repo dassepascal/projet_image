@@ -224,10 +224,14 @@ class Image
 
     if (!$mysqli->query('DELETE FROM image WHERE filename = "' . $filename . '"')) {
       var_dump($filename);
-      exit();
+      $msg_error[] = 'Une erreur est survenue lors de la suppression des données dans la base .<br /> Le message d\'erreur de MySQL est:' . $mysqli->error;
+    }
+    if (isset($msg_error)) {
+      $msg_error = implode('', $msg_error);
+      return $msg_error;
     } else {
-      var_dump($filename);
-      return $filename;
+
+      return true;
     }
   }
 }
