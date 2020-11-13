@@ -1,3 +1,4 @@
+<?php require('./process/config.php'); ?>
 <!DOCTYPE html>
 <html>
 
