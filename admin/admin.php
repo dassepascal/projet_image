@@ -2,10 +2,9 @@
 
 echo '<h4>admin</h4>';
 //require('config.php');
-//require('../class/Image.php');
+//require('class/Image.php');
 require('../process/process_image.php');
 //require('contenu.php');
-//require('../process/process_delete.php');
 
 
 $image = new Image();
@@ -37,12 +36,7 @@ $images = $image->getImages(IMAGE_DIR_PATH);
 
       <?php foreach ($images as $image) : ?>
         <div class="container-image">
-          <div id="success">
-            <?php if (isset($msg_success)) {
-              echo $msg_success;
-            }
-            ?>
-          </div>
+
 
           <p>
             <div class="item">
